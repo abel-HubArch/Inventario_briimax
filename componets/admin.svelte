@@ -1,15 +1,15 @@
 <script>
-	import Usuarios from './herramientas/Usuarios.svelte';
-	import Crear_Usuario_Nuevo from './herramientas/Crear_Usuario_Nuevo.svelte';
-	import ModelosImplementar from './herramientas/Modelos-implementar.svelte';
-	import ImplementarModelos from './herramientas/implementar_modelos.svelte';
-	import Implementar_Materia from './herramientas/implementar_Materia.svelte';
-	import Materia from './herramientas/materia.svelte';
+//	import Usuarios from './herramientas/Usuarios.svelte';
+	//import Crear_Usuario_Nuevo from './herramientas/Crear_Usuario_Nuevo.svelte';
+//	import ModelosImplementar from './herramientas/Modelos-implementar.svelte';
+	//import ImplementarModelos from './herramientas/implementar_modelos.svelte';
+	//import Implementar_Materia from './herramientas/implementar_Materia.svelte';
+//	import Materia from './herramientas/materia.svelte';
 
-   var implementar_materia = false 
-   var imMateriaButton = "inactive1" 
-   const implementarMateria = ()=>{
-       if (implementar_materia == false) {
+  // var implementar_materia = false 
+   //var imMateriaButton = "inactive1" 
+ //  const implementarMateria = ()=>{
+ //      if (implementar_materia == false) {
         implementar_materia = true
         imMateriaButton =  "active1"
        } else {
@@ -19,11 +19,11 @@
    }
 
    var implementar_modelo = false 
-   var imModeloButton = "inactive2" 
-   const implementarModelo = ()=>{
+ //  var imModeloButton = "inactive2" 
+  // const implementarModelo = ()=>{
        if (implementar_modelo == false) {
         implementar_modelo = true
-        imModeloButton =  "active2"
+ //       imModeloButton =  "active2"
        } else {
         implementar_modelo = false;
         imModeloButton =  "inactive2"
@@ -32,13 +32,13 @@
 
 
    var crearUsuario = false 
-   var imUsuarioButton = "inactive3" 
-   const crear_usuario = ()=>{
+  // var imUsuarioButton = "inactive3" 
+  // const crear_usuario = ()=>{
        if (crearUsuario == false) {
         crearUsuario = true
         imUsuarioButton =  "active3"
        } else {
-        crearUsuario = false;
+   //     crearUsuario = false;
         imUsuarioButton =  "inactive3"
        }
    }
@@ -46,7 +46,7 @@
 
    var usuarios = false 
    var imUsuariOButton = "inactive4" 
-   const usuarioS = ()=>{
+  // const usuarioS = ()=>{
        if (usuarios == false) {
         usuarios = true
         imUsuariOButton =  "active4"
