@@ -1,0 +1,104 @@
+<script>
+    import "firebase/auth";
+  import { db, ref, firebaseAuth } from './../../src/firebase';
+var datosdeRegistro = {
+    email: "",
+    password: "",
+    nombre: "",
+    imagen: "https://scontent.flpb2-1.fna.fbcdn.net/v/t1.6435-9/164399581_467738951308407_1869145577828625518_n.png?_nc_cat=107&ccb=1-3&_nc_sid=973b4a&_nc_ohc=FC_uOvtuE6QAX-ZXuIX&_nc_ht=scontent.flpb2-1.fna&oh=83a1d1b508f5d5a29082035ebfe39298&oe=60CBF305",
+    uid: "",
+    tipo: "",
+    estado: "Libre"
+}
+
+//Subiendo imagen
+let files;
+var nombreArchivo;
+var archivo;
+
+$: if (files) {
+		// Note that `files` is of type `FileList`, not an Array:
+		// https://developer.mozilla.org/en-US/docs/Web/API/FileList
+		console.log(files);
+
+		for (const file of files) {
+			console.log(file.name);
+            nombreArchivo = file.name;
+            archivo = file;
+		}
+	}
+
+let fileinput, direccionImage;
+
+   
+
+
+function crearUsuario(){
+
+   //subimos la imagen
+   const task = ref.child(nombreArchivo).put(archivo);
+     //subimos los datos
+    task
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then( url => {
+        direccionImage = url;
+        console.log(url);
+        console.log("Creando Usuario")
+        datosdeRegistro["imagen"] = url;
+        db.collection('Usuarios').doc(datosdeRegistro.email).set(datosdeRegistro);
+    
+        //subiendo a auth
+        
+      }
+    )
+    firebaseAuth.createUserWithEmailAndPassword(datosdeRegistro.email, datosdeRegistro.password)
+    .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+
+           //actualizamos el usuario creado 
+        user.updateProfile({
+        displayName: datosdeRegistro.nombre,
+        photoURL: direccionImage,
+        // The user's ID, unique to the Firebase project. Do NOT use
+                
+        }).then(function() {  
+          console.log("Usuario creado correctamente");
+     }) 
+   })
+  }
+</script>
+<style>
+
+</style>
+
+
+
+
+<div class="crear_usuario_nuevo" style="margin-top: 20px;">
+    <h3>Email</h3>
+    <input type="email" bind:value="{datosdeRegistro.email}">
+    <h3>contrasena</h3>
+    <input type="password" bind:value="{datosdeRegistro.password}">
+    <h3>Nombre</h3>
+    <input type="text" bind:value="{datosdeRegistro.nombre}">
+    <h3>Foto de Perfil</h3>
+    <input style="" bind:files type="file" accept=".jpg, .jpeg, .png" bind:this={fileinput} >
+    <h3>Tipo</h3>
+    <input type="text" bind:value="{datosdeRegistro.tipo}"> <br>
+    <button on:click="{crearUsuario}" class="btn btn-primary" style="margin-top: 20px;">Crear Usuario Nuevo</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

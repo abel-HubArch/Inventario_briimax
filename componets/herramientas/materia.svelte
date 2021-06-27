@@ -28,19 +28,36 @@ db.collection('materia_prima').onSnapshot(querySnapshot =>{
  }
 </style>
 
-<table class="tabla">
-  <tr>
+
+<table class="table table-hover">
+ 
+    <thead>
+       <tr>
     {#each materia_prima as materia_prima}
        <!-- content here -->
-       <th>{materia_prima.materia}</th>
+       <td>{materia_prima.materia}</td>
     {/each}
-  </tr>
-  <tr>
-    {#each materia_prima as materia_prima}
-    <!-- content here -->
-    <th>{materia_prima.cantidad}</th>
-   {/each}
-  </tr>
+       </tr>
+    </thead>
+   
+      
+    <tbody>
+
+      <tr>
+        {#each materia_prima as materia_prima}
+        <!-- content here -->
+        <td>{materia_prima.cantidad}<br>{materia_prima.cajas_o_unidades}</td>
+       {/each}
+      </tr>
+
+      <tr>
+       {#each materia_prima as materia_prima}
+       <!-- content here -->
+       <td>{materia_prima.precio}Bs</td>
+       {/each}
+       </tr>
+
+    </tbody>
 </table>
 
 

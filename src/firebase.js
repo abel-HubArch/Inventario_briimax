@@ -1,5 +1,6 @@
   
   import firebase from 'firebase'
+  
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAgc7NeXs7KXB59VerIVWM925h4sncg5mE",
@@ -12,4 +13,8 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  export const db = firebase.firestore()
+  export const db = firebase.firestore();
+  export const ref = firebase.storage().ref();
+  export const firebaseAuth = firebase.auth();
+  export const firebaseSession = firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+  
